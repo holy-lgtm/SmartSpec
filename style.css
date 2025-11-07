@@ -21,8 +21,8 @@ body {
 .container {
   background: #ffffffcc;
   backdrop-filter: blur(10px);
-  width: 90%;
-  max-width: 420px;
+  max-width: 100%;
+  width: auto;
   min-height: 80vh;
   border-radius: 25px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -184,4 +184,16 @@ td {
   margin: 20px 0;
   color: #4b3fa8;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 10px;
+  }
+  .card {
+    flex-direction: column;
+  }
 }
