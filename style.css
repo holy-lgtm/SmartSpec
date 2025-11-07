@@ -15,12 +15,14 @@ body {
   justify-content: center;
   align-items: center;
   color: #333;
+  overflow-x: hidden;
 }
 
 /* Kontainer utama */
 .container {
-  background: #ffffffcc;
-  backdrop-filter: blur(10px);
+  position: relative;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
   max-width: 100%;
   width: auto;
   min-height: 80vh;
@@ -28,7 +30,71 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   padding: 25px;
   text-align: center;
-  overflow-y: auto;
+  overflow: hidden;
+}
+
+/* Balon pastel di dalam container */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(173, 216, 255, 0.4), rgba(255, 255, 255, 0));
+  animation: floatBalloon 14s ease-in-out infinite;
+  z-index: 0;
+}
+.container::after {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 40% 40%, rgba(230, 200, 255, 0.5), rgba(255, 255, 255, 0));
+  animation-delay: 5s;
+}
+
+/* Tambahan balon kecil opsional */
+.container .balloon1,
+.container .balloon2 {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 20% 20%, rgba(200, 220, 255, 0.4), rgba(255, 255, 255, 0));
+  animation: floatBalloon 10s ease-in-out infinite;
+  z-index: 0;
+}
+.container .balloon1 {
+  top: 70%;
+  left: 20%;
+  animation-delay: 2s;
+}
+.container .balloon2 {
+  top: 40%;
+  right: 25%;
+  animation-delay: 7s;
+}
+
+/* Animasi balon */
+@keyframes floatBalloon {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-40px) translateX(30px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.7;
+  }
+}
+
+/* Agar konten tetap di atas animasi */
+.container * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Judul & teks */
